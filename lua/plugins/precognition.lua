@@ -23,9 +23,6 @@ return {
             PrevParagraph = { text = "{", prio = 8 },
             NextParagraph = { text = "}", prio = 8 },
         },
-        disabled_fts = {
-            "startify",
-        },
     },
     config = function()
         vim.keymap.set("n", "<leader>op", function()
