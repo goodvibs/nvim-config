@@ -11,6 +11,10 @@ end
 
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
+function lazygit_toggle()
+    require('toggleterm.terminal').Terminal:new({ cmd = "lazygit", hidden = true }):toggle()
+end
+
 return {
   "akinsho/toggleterm.nvim",
   version="*",
@@ -37,6 +41,8 @@ return {
     )
 
     vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
+    vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua lazygit_toggle()<CR>", {noremap = true, silent = true})
 
   end,
   cmd = {
