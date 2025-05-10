@@ -42,7 +42,7 @@ return {
 
     vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
-    vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua lazygit_toggle()<CR>", {noremap = true, silent = true})
+    vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua lazygit_toggle()<CR>", { desc = "Open LazyGit" })
 
   end,
   cmd = {
