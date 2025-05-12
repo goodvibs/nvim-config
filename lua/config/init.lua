@@ -1,3 +1,3 @@
-require("lua.config.lazy")
-require("lua.config.options")
-require("lua.config.keymaps")
+require("config.lazy")
+require("config.options")
+require("config.keymaps")
