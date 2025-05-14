@@ -38,9 +38,8 @@ return {
         wk.add({
             { "<leader>o", group = "Options" },
         })
-
         wk.add({
-            { "<leader>w", group = "Workspace" },
+            { "<leader>x", group = "Trouble" },
         })
     end,
 }
