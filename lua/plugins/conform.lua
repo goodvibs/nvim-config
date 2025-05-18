@@ -31,12 +31,12 @@ return {
                 timeout_ms = 500,
                 lsp_format = "fallback",
             },
-           -- Set the log level. Use `:ConformInfo` to see the location of the log file.
+            -- Set the log level. Use `:ConformInfo` to see the location of the log file.
             log_level = vim.log.levels.ERROR,
             -- Conform will notify you when a formatter errors
             notify_on_error = true,
             -- Conform will notify you when no formatters are available for the buffer
-            notify_no_formatters = true, 
+            notify_no_formatters = true,
         })
 
         vim.keymap.set({ "n", "v" }, "<leader>mp", function()
