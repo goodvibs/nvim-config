@@ -1,7 +1,10 @@
 return {
     "saghen/blink.cmp",
     -- optional: provides snippets for the snippet source
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = {
+        "rafamadriz/friendly-snippets",
+        "echasnovski/mini.icons",
+    },
 
     -- use a release tag to download pre-built binaries
     version = "1.*",
@@ -25,7 +28,26 @@ return {
         -- C-k: Toggle signature help (if signature.enabled = true)
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        keymap = { preset = "enter" },
+        keymap = {
+            preset = "none",
+
+            ["<C-;>"] = { "show", "hide", "fallback" },
+            ["<C-d>"] = { "show_documentation", "hide_documentation" },
+            ["<CR>"] = { "accept", "fallback" },
+
+            ["<Tab>"] = { "snippet_forward", "fallback" },
+            ["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+            ["<Up>"] = { "select_prev", "fallback" },
+            ["<Down>"] = { "select_next", "fallback" },
+            ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
+            ["<C-j>"] = { "select_next", "fallback_to_mappings" },
+
+            ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+            ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+            ["<C->"] = { "show_signature", "hide_signature", "fallback" },
+        },
 
         appearance = {
             -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -34,7 +56,33 @@ return {
         },
 
         -- (Default) Only show the documentation popup when manually triggered
-        completion = { documentation = { auto_show = false } },
+        completion = {
+            documentation = { auto_show = true },
+            menu = {
+                draw = {
+                    components = {
+                        kind_icon = {
+                            text = function(ctx)
+                                local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+                                return kind_icon
+                            end,
+                            -- (optional) use highlights from mini.icons
+                            highlight = function(ctx)
+                                local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                                return hl
+                            end,
+                        },
+                        kind = {
+                            -- (optional) use highlights from mini.icons
+                            highlight = function(ctx)
+                                local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                                return hl
+                            end,
+                        },
+                    },
+                },
+            },
+        },
 
         signature = { enabled = true },
 
@@ -42,6 +90,11 @@ return {
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
             default = { "lsp", "path", "snippets", "buffer" },
+        },
+
+        cmdline = {
+            keymap = { preset = "inherit" },
+            completion = { menu = { auto_show = false } },
         },
 
         -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
