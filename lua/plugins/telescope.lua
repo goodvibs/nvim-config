@@ -4,13 +4,10 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-        { "echasnovski/mini.icons", version = false },
+        { "echasnovski/mini.icons",                   version = false },
     },
     config = function()
         local telescope = require("telescope")
-        local actions = require("telescope.actions")
-        local trouble = require("trouble")
-        local trouble_telescope = require("trouble.sources.telescope")
 
         telescope.setup({
             defaults = {
@@ -34,13 +31,16 @@ return {
 
         local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Search files" })
-        vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Fuzzy search project" })
-        vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "View open buffers" })
+        vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Search CWD" })
+        vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Search git files in CWD" })
+        vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Search open buffers" })
         vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Search help tags" })
-        -- vim.keymap.set("n", "<leader>fo", builtin.old_files, { desc = "Telescope old files" })
-        vim.keymap.set("n", "<leader>fs", builtin.search_history, { desc = "View search history" })
-        vim.keymap.set("n", "<leader>fc", builtin.command_history, { desc = "View command history" })
-        vim.keymap.set("n", "<leader>fq", builtin.quickfix, { desc = "View quickfix list" })
+        vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Search old files" })
+        vim.keymap.set("n", "<leader>fS", builtin.search_history, { desc = "Search search history" })
+        vim.keymap.set("n", "<leader>fc", builtin.command_history, { desc = "Search command history" })
+        vim.keymap.set("n", "<leader>fq", builtin.quickfix, { desc = "Search quickfix list" })
+        vim.keymap.set("n", "<leader>ft", builtin.treesitter, { desc = "Search treesitter AST" })
+        vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume the previous search" })
 
         vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Reference(s)" })
         vim.keymap.set("n", "gs", builtin.lsp_document_symbols, { desc = "View document symbols" })
