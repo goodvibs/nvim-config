@@ -24,26 +24,31 @@ return {
                 a = { bg = colors.blue, fg = colors.bg, gui = "bold" },
                 b = { bg = colors.bg, fg = colors.fg },
                 c = { bg = colors.bg, fg = colors.fg },
+                z = { bg = colors.bg, colors.fg }
             },
             insert = {
                 a = { bg = colors.green, fg = colors.bg, gui = "bold" },
                 b = { bg = colors.bg, fg = colors.fg },
                 c = { bg = colors.bg, fg = colors.fg },
+                z = { bg = colors.bg, colors.fg }
             },
             visual = {
                 a = { bg = colors.violet, fg = colors.bg, gui = "bold" },
                 b = { bg = colors.bg, fg = colors.fg },
                 c = { bg = colors.bg, fg = colors.fg },
+                z = { bg = colors.bg, colors.fg }
             },
             command = {
                 a = { bg = colors.yellow, fg = colors.bg, gui = "bold" },
                 b = { bg = colors.bg, fg = colors.fg },
                 c = { bg = colors.bg, fg = colors.fg },
+                z = { bg = colors.bg, colors.fg }
             },
             replace = {
                 a = { bg = colors.red, fg = colors.bg, gui = "bold" },
                 b = { bg = colors.bg, fg = colors.fg },
                 c = { bg = colors.bg, fg = colors.fg },
+                z = { bg = colors.bg, colors.fg }
             },
             inactive = {
                 a = { bg = colors.inactive_bg, fg = colors.semilightgray, gui = "bold" },
@@ -72,7 +77,6 @@ return {
                         color = { fg = "#ff9e64" },
                     },
                     { "lsp_status" },
-                    { "filetype" },
                 },
                 lualine_y = {}
             },
