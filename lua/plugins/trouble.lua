@@ -1,11 +1,5 @@
 return {
     "folke/trouble.nvim",
-    dependencies = {
-        "echasnovski/mini.icons",
-    },
-    opts = {
-        focus = true,
-    },
     cmd = "Trouble",
     keys = {
         { "<leader>xw", "<cmd>Trouble diagnostics toggle<CR>",              desc = "Open trouble workspace diagnostics" },
