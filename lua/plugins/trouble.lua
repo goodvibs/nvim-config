@@ -1,5 +1,6 @@
 return {
     "folke/trouble.nvim",
+    opts = {},
     cmd = "Trouble",
     keys = {
         { "<leader>xw", "<cmd>Trouble diagnostics toggle<CR>",              desc = "Open trouble workspace diagnostics" },
