@@ -41,6 +41,7 @@ return {
         vim.keymap.set("n", "<leader>fq", builtin.quickfix, { desc = "Search quickfix list" })
         vim.keymap.set("n", "<leader>ft", builtin.treesitter, { desc = "Search treesitter AST" })
         vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume the previous search" })
+        vim.keymap.set("n", "<leader>fj", builtin.jumplist, { desc = "Search jumplist" })
 
         vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Reference(s)" })
         vim.keymap.set("n", "gs", builtin.lsp_document_symbols, { desc = "View document symbols" })
