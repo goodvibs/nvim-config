@@ -41,5 +41,8 @@ return {
         wk.add({
             { "<leader>x", group = "Trouble" },
         })
+        wk.add({
+            { "<leader>d", group = "DAP" },
+        })
     end,
 }
