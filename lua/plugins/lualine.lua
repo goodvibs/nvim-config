@@ -69,7 +69,9 @@ return {
                     { 'branch' },
                     { 'pretty_path' }
                 },
-                lualine_c = {},
+                lualine_c = {
+                    { "aerial" }
+                },
                 lualine_x = {
                     {
                         lazy_status.updates,
