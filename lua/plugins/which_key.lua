@@ -21,9 +21,6 @@ return {
             { "<leader>f", group = "Find" },
         })
         wk.add({
-            { "<leader>t", group = "Terminal" },
-        })
-        wk.add({
             { "<leader>y", group = "Yank" },
         })
         wk.add({

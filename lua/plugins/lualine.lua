@@ -79,6 +79,26 @@ return {
                         color = { fg = "#ff9e64" },
                     },
                     { "lsp_status" },
+                    {
+                        function()
+                            return ('%s %d events'):format(Snacks.profiler.config.icons.status,
+                                #Snacks.profiler.core.events)
+                        end,
+                        color = 'DiagnosticError',
+                        cond = function()
+                            return Snacks.profiler.core.running
+                        end,
+                    },
+                    {
+                        function()
+                            local reg = vim.fn.reg_recording()
+                            return ' recording to ' .. reg
+                        end,
+                        color = 'DiagnosticInfo',
+                        cond = function()
+                            return vim.fn.reg_recording() ~= ''
+                        end,
+                    },
                 },
                 lualine_y = {}
             },

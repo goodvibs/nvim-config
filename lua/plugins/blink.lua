@@ -1,6 +1,6 @@
 return {
     "saghen/blink.cmp",
-    -- optional: provides snippets for the snippet source
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
         "rafamadriz/friendly-snippets",
         "echasnovski/mini.icons",
@@ -38,11 +38,11 @@ return {
             preset = "none",
 
             ["<C-;>"] = { "show", "hide", "fallback" },
-            ["<C-d>"] = { "show_documentation", "hide_documentation" },
-            ["<CR>"] = { "accept", "fallback" },
+            ["gD"] = { "show_documentation", "hide_documentation" },
+            ["<Tab>"] = { "accept", "fallback" },
 
-            ["<Tab>"] = { "snippet_forward", "fallback" },
-            ["<S-Tab>"] = { "snippet_backward", "fallback" },
+            -- ["<Tab>"] = { "snippet_forward", "fallback" },
+            -- ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
             ["<Up>"] = { "select_prev", "fallback" },
             ["<Down>"] = { "select_next", "fallback" },
@@ -107,7 +107,12 @@ return {
 
         cmdline = {
             keymap = { preset = "inherit" },
-            completion = { menu = { auto_show = false } },
+            completion = {
+                menu = {
+                    auto_show = false,
+                    ghost_text = { enabled = false }
+                }
+            },
         },
 
         -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
