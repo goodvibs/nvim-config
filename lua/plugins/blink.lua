@@ -38,7 +38,7 @@ return {
             preset = "none",
 
             ["<C-;>"] = { "show", "hide", "fallback" },
-            ["gD"] = { "show_documentation", "hide_documentation" },
+            ["<gD>"] = { "show_documentation", "hide_documentation" },
             ["<Tab>"] = { "accept", "fallback" },
 
             -- ["<Tab>"] = { "snippet_forward", "fallback" },

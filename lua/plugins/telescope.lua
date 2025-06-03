@@ -58,8 +58,8 @@ return {
         vim.keymap.set("n", "<leader>fv", builtin.jumplist, { desc = "Search vim options" })
         vim.keymap.set("n", "<leader>fa", "<cmd>Telescope aerial<cr>", { desc = "Search aerial symbols" })
 
-        vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Reference(s)" })
-        vim.keymap.set("n", "gs", builtin.lsp_document_symbols, { desc = "View document symbols" })
+        -- vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Reference(s)" })
+        -- vim.keymap.set("n", "gs", builtin.lsp_document_symbols, { desc = "View document symbols" })
         vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "Implementation(s)" })
         vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Definition(s)" })
         vim.keymap.set("n", "gt", builtin.lsp_type_definitions, { desc = "Type definition(s)" })
