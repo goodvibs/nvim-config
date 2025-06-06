@@ -99,6 +99,11 @@ return {
                             return vim.fn.reg_recording() ~= ''
                         end,
                     },
+                    {
+                        function()
+                            return vim.api.nvim_call_function("codeium#GetStatusString", {})
+                        end
+                    }
                 },
                 lualine_y = {}
             },
