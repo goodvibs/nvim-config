@@ -64,6 +64,8 @@ return {
         completion = {
             documentation = { auto_show = true },
             menu = {
+                auto_show = false,
+                border = "single",
                 draw = {
                     components = {
                         kind_icon = {
@@ -89,7 +91,10 @@ return {
             },
         },
 
-        signature = { enabled = true },
+        signature = {
+            enabled = true,
+            border = "single",
+        },
 
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
