@@ -39,7 +39,6 @@ return {
 
 
         telescope.load_extension("fzf")
-        telescope.load_extension("aerial")
 
         local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<leader>fb", builtin.current_buffer_fuzzy_find, { desc = "Fuzzy search in current buffer" })
@@ -56,7 +55,6 @@ return {
         vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume the previous search" })
         vim.keymap.set("n", "<leader>fj", builtin.jumplist, { desc = "Search jumplist" })
         vim.keymap.set("n", "<leader>fv", builtin.jumplist, { desc = "Search vim options" })
-        vim.keymap.set("n", "<leader>fa", "<cmd>Telescope aerial<cr>", { desc = "Search aerial symbols" })
 
         vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "Implementation(s)" })
         vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Definition(s)" })

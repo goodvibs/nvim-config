@@ -51,9 +51,9 @@ return {
                 z = { bg = colors.bg, colors.fg }
             },
             inactive = {
-                a = { bg = colors.inactive_bg, fg = colors.semilightgray, gui = "bold" },
-                b = { bg = colors.inactive_bg, fg = colors.semilightgray },
-                c = { bg = colors.inactive_bg, fg = colors.semilightgray },
+                a = { bg = colors.inactive_bg, fg = colors.fg, gui = "bold" },
+                b = { bg = colors.inactive_bg, fg = colors.fg },
+                c = { bg = colors.inactive_bg, fg = colors.fg },
             },
         }
 
@@ -69,16 +69,13 @@ return {
                     { 'branch' },
                     { 'pretty_path' }
                 },
-                lualine_c = {
-                    { "aerial" }
-                },
+                lualine_c = {},
                 lualine_x = {
                     {
                         lazy_status.updates,
                         cond = lazy_status.has_updates,
                         color = { fg = "#ff9e64" },
                     },
-                    { "lsp_status" },
                     {
                         function()
                             return ('%s %d events'):format(Snacks.profiler.config.icons.status,
@@ -98,11 +95,6 @@ return {
                         cond = function()
                             return vim.fn.reg_recording() ~= ''
                         end,
-                    },
-                    {
-                        function()
-                            return vim.api.nvim_call_function("codeium#GetStatusString", {})
-                        end
                     }
                 },
                 lualine_y = {}
