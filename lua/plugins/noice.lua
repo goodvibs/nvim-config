@@ -23,6 +23,7 @@ return {
             opts = {},              -- global options for the cmdline. See section on views
             ---@type table<string, CmdlineFormat>
             format = {
+                conceal = false,
                 cmdline = { pattern = "^:", icon = "", lang = "vim", conceal = false },
                 search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex", conceal = false },
                 search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex", conceal = false },

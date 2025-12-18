@@ -76,7 +76,7 @@ return {
         lualine.setup({
             options = {
                 theme = my_lualine_theme,
-                component_separators = { left = '|', right = '|' },
+                component_separators = { left = '', right = '' },
                 section_separators = { left = '', right = '' },
                 disabled_filetypes = {
                     statusline = { 'alpha', 'dashboard' },
@@ -89,12 +89,16 @@ return {
                     tabline = 1000,
                     winbar = 1000,
                 },
+                icons_enabled = true,
             },
             sections = {
                 lualine_a = { 'mode' },
                 lualine_b = {
-                    { 'branch', icon = '' },
-                    { 'pretty_path' },
+                    { 'branch', icon = '󰘬', color = { fg = colors.violet } },
+                    {
+                        'pretty_path',
+                        color = { fg = colors.fg },
+                    },
                     {
                         'diff',
                         symbols = { added = '󰐕 ', modified = '󰍴 ', removed = '󰍵 ' },
@@ -108,14 +112,13 @@ return {
                 lualine_c = {
                     {
                         'filename',
-                        path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
-                        shorting_target = 40,
                         symbols = {
                             modified = ' ●',
                             readonly = ' 󰈡',
                             unnamed = ' [No Name]',
                             newfile = ' [New]',
                         },
+                        color = { fg = colors.fg },
                     },
                     {
                         'diagnostics',
@@ -137,13 +140,15 @@ return {
                             return vim.bo.filetype ~= '' and vim.bo.filetype or 'no ft'
                         end,
                         icon = '󰨞',
-                        color = { fg = colors.fg, gui = 'bold' },
+                        color = { fg = colors.fg },
                     },
                     {
                         'encoding',
+                        icon = '󰨞',
                         cond = function()
-                            return vim.bo.fileencoding ~= ''
+                            return vim.bo.fileencoding ~= '' and vim.bo.fileencoding ~= 'utf-8'
                         end,
+                        color = { fg = colors.fg },
                     },
                     {
                         'fileformat',
@@ -152,6 +157,7 @@ return {
                             dos = '󰘧',
                             mac = '󰘧',
                         },
+                        color = { fg = colors.fg },
                     },
                     {
                         lazy_status.updates,
@@ -171,9 +177,9 @@ return {
                     {
                         function()
                             local reg = vim.fn.reg_recording()
-                            return ' recording to ' .. reg
+                            return '󰑊 ' .. reg
                         end,
-                        color = 'DiagnosticInfo',
+                        color = { fg = colors.violet },
                         cond = function()
                             return vim.fn.reg_recording() ~= ''
                         end,
@@ -185,22 +191,28 @@ return {
                         icon = '󰒋',
                         color = { fg = colors.green },
                         cond = function()
-                            return #vim.lsp.get_active_clients({ bufnr = 0 }) > 0
+                            return #vim.lsp.get_clients({ bufnr = 0 }) > 0
                         end,
                     },
                     {
                         'location',
+                        icon = '󰁔',
                         padding = { left = 0, right = 1 },
+                        color = { fg = colors.fg },
                     },
                     {
                         'progress',
+                        icon = '󰦨',
                         padding = { left = 1, right = 0 },
+                        color = { fg = colors.fg },
                     },
                 },
                 lualine_z = {
                     {
                         'datetime',
                         style = '%H:%M',
+                        icon = '󰥔',
+                        color = { fg = colors.fg },
                         cond = function()
                             return vim.fn.strftime('%H') ~= '00' or vim.fn.strftime('%M') ~= '00'
                         end,
@@ -210,13 +222,12 @@ return {
             inactive_sections = {
                 lualine_a = {},
                 lualine_b = {
-                    { 'branch', icon = '' },
+                    { 'branch', icon = '󰘬' },
                     { 'pretty_path' },
                 },
                 lualine_c = {
                     {
                         'filename',
-                        path = 1,
                         symbols = {
                             modified = ' ●',
                             readonly = ' 󰈡',

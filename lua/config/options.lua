@@ -1,65 +1,52 @@
-vim.opt.nu = true
-vim.opt.relativenumber = true
-
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-
-vim.opt.smartindent = true
-
-vim.opt.wrap = true
-
-vim.opt.swapfile = false
+vim.opt.autoindent = true
+vim.opt.autoread = true
 vim.opt.backup = false
+vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.cursorline = true
+vim.opt.expandtab = true
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = "indent"
+vim.opt.hidden = true
+vim.opt.hlsearch = false
+vim.opt.ignorecase = true
+vim.opt.incsearch = true
+vim.lsp.inlay_hint.enable(true)
+vim.opt.isfname:append("@-@")
+vim.opt.laststatus = 2
+vim.opt.lazyredraw = false
+vim.opt.list = false
+vim.opt.listchars = {
+    tab = "→ ",
+    eol = "↲",
+    nbsp = "␣",
+    trail = "•",
+    extends = "⟩",
+    precedes = "⟨",
+}
+vim.opt.mouse = "a"
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.ruler = false
+vim.opt.scrolloff = 6
+vim.opt.shiftwidth = 4
+vim.opt.showcmd = true
+vim.opt.showmode = false
+vim.opt.sidescrolloff = 6
+vim.opt.signcolumn = "yes"
+vim.opt.smartcase = true
+vim.opt.smartindent = true
+vim.opt.softtabstop = 4
+vim.opt.spelllang = "en_us"
+vim.opt.swapfile = false
+vim.opt.synmaxcol = 300
+vim.opt.tabstop = 4
+vim.opt.termguicolors = true
+vim.opt.timeoutlen = 300
+vim.opt.title = true
+vim.opt.titlestring = "nvim"
+vim.opt.ttimeoutlen = 0
 vim.opt.undodir = vim.fn.expand("~") .. "/.vim/undodir"
 vim.opt.undofile = true
-
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-
-vim.opt.termguicolors = true
-
-vim.opt.scrolloff = 6
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
-
 vim.opt.updatetime = 50
-
--- Better completion experience
-vim.opt.completeopt = { "menuone", "noselect" } -- Show popup menu even for one match, don't auto-select
-
--- Better search experience
-vim.opt.ignorecase = true -- Ignore case in search patterns
-vim.opt.smartcase = true -- Override ignorecase if search contains uppercase
-
--- Better visual feedback
-vim.opt.cursorline = true -- Highlight current line
-
--- Better command line
-vim.opt.showcmd = true -- Show partial commands in status line
-vim.opt.wildmenu = true -- Enhanced command-line completion
-
--- Better file handling
-vim.opt.hidden = true -- Allow hidden buffers (don't require saving before switching)
-vim.opt.autoread = true -- Auto-reload files changed outside vim
-
--- Better performance
-vim.opt.lazyredraw = false -- Don't redraw during macro execution (can cause issues)
-vim.opt.synmaxcol = 300 -- Don't syntax highlight lines longer than 300 chars
-
--- Better status
-vim.opt.laststatus = 2 -- Always show status line
-vim.opt.ruler = false -- Don't show cursor position (handled by statusline plugins)
-
--- Better folding (if you use folds)
-vim.opt.foldmethod = "indent" -- Fold based on indentation
-vim.opt.foldlevel = 99 -- Don't fold by default
-
--- Better list chars (show whitespace)
-vim.opt.list = false -- Don't show list chars by default (toggle with :set list!)
-vim.opt.listchars = { tab = "→ ", eol = "↲", nbsp = "␣", trail = "•", extends = "⟩", precedes = "⟨" }
-
--- Better timeouts
-vim.opt.timeoutlen = 300 -- Time to wait for mapped sequence to complete
-vim.opt.ttimeoutlen = 0 -- Time to wait for key code sequence to complete
+vim.opt.wildmenu = true
+vim.opt.wrap = false

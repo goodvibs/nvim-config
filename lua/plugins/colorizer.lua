@@ -3,5 +3,6 @@ return {
     event = "VeryLazy",
     opts = {
         lazy_load = true,
+        names = false,
     },
 }
