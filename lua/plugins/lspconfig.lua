@@ -46,7 +46,7 @@ return {
         -- Helper function to setup LSP keymaps
         local on_attach = function(client, bufnr)
             -- Enable completion triggered by <c-x><c-o>
-            vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+            vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
             -- Buffer local mappings
             local opts = { buffer = bufnr, remap = false }

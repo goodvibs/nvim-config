@@ -6,7 +6,8 @@ return {
             override = {
                 ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
                 ["vim.lsp.util.stylize_markdown"] = true,
-                ["cmp.entry.get_documentation"] = true,
+                -- Note: blink.cmp doesn't use cmp.entry.get_documentation
+                -- ["cmp.entry.get_documentation"] = true,
             },
         },
         presets = {

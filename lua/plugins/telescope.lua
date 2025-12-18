@@ -54,10 +54,6 @@ return {
         vim.keymap.set("n", "<leader>ft", builtin.treesitter, { desc = "Search treesitter AST" })
         vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume the previous search" })
         vim.keymap.set("n", "<leader>fj", builtin.jumplist, { desc = "Search jumplist" })
-        vim.keymap.set("n", "<leader>fv", builtin.jumplist, { desc = "Search vim options" })
-
-        vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "Implementation(s)" })
-        vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Definition(s)" })
-        vim.keymap.set("n", "gt", builtin.lsp_type_definitions, { desc = "Type definition(s)" })
+        vim.keymap.set("n", "<leader>fv", builtin.vim_options, { desc = "Search vim options" })
     end,
 }
