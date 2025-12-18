@@ -111,16 +111,6 @@ return {
                 },
                 lualine_c = {
                     {
-                        'filename',
-                        symbols = {
-                            modified = ' ●',
-                            readonly = ' 󰈡',
-                            unnamed = ' [No Name]',
-                            newfile = ' [New]',
-                        },
-                        color = { fg = colors.fg },
-                    },
-                    {
                         'diagnostics',
                         sources = { 'nvim_diagnostic' },
                         symbols = {
@@ -148,15 +138,6 @@ return {
                         cond = function()
                             return vim.bo.fileencoding ~= '' and vim.bo.fileencoding ~= 'utf-8'
                         end,
-                        color = { fg = colors.fg },
-                    },
-                    {
-                        'fileformat',
-                        symbols = {
-                            unix = '󰘧',
-                            dos = '󰘧',
-                            mac = '󰘧',
-                        },
                         color = { fg = colors.fg },
                     },
                     {
