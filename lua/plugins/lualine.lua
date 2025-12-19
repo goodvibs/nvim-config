@@ -110,15 +110,6 @@ return {
 
 
         ins_left {
-            function() return '' end,
-            color = function()
-                return { fg = mode_color() }
-            end,
-            padding = { right = 1 },
-        }
-
-
-        ins_left {
             function()
                 local mode_map = {
                     n  = 'NORMAL',
@@ -197,7 +188,7 @@ return {
                 end
                 return msg
             end,
-            icon = ' LSP:',
+            icon = '⏿ LSP:',
             color = { fg = '#ffffff', gui = 'bold' },
         }
 
