@@ -19,7 +19,7 @@ return {
             inactive_bg = "#2c3043",
         }
 
-        local my_lualine_theme = {
+        local theme = {
             normal = {
                 a = { bg = colors.blue, fg = colors.bg, gui = "bold" },
                 b = { bg = colors.bg, fg = colors.fg },
@@ -63,19 +63,11 @@ return {
             return count > 0 and tostring(count) or ""
         end
 
-        -- Helper function to get LSP client names
-        local function lsp_client()
-            local clients = {}
-            for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
-                table.insert(clients, client.name)
-            end
-            return table.concat(clients, ", ")
-        end
 
         -- configure lualine with modified theme
         lualine.setup({
             options = {
-                theme = my_lualine_theme,
+                theme = theme,
                 component_separators = { left = '', right = '' },
                 section_separators = { left = '', right = '' },
                 disabled_filetypes = {
@@ -99,15 +91,6 @@ return {
                         'pretty_path',
                         color = { fg = colors.fg },
                     },
-                    {
-                        'diff',
-                        symbols = { added = '󰐕 ', modified = '󰍴 ', removed = '󰍵 ' },
-                        diff_color = {
-                            added = { fg = colors.green },
-                            modified = { fg = colors.yellow },
-                            removed = { fg = colors.red },
-                        },
-                    },
                 },
                 lualine_c = {
                     {
@@ -129,16 +112,12 @@ return {
                         function()
                             return vim.bo.filetype ~= '' and vim.bo.filetype or 'no ft'
                         end,
-                        icon = '󰨞',
                         color = { fg = colors.fg },
                     },
                     {
-                        'encoding',
-                        icon = '󰨞',
-                        cond = function()
-                            return vim.bo.fileencoding ~= '' and vim.bo.fileencoding ~= 'utf-8'
-                        end,
-                        color = { fg = colors.fg },
+                      'encoding',
+                      -- Show '[BOM]' when the file has a byte-order mark
+                        show_bomb = false,
                     },
                     {
                         lazy_status.updates,
@@ -168,35 +147,27 @@ return {
                 },
                 lualine_y = {
                     {
-                        lsp_client,
-                        icon = '󰒋',
-                        color = { fg = colors.green },
-                        cond = function()
-                            return #vim.lsp.get_clients({ bufnr = 0 }) > 0
-                        end,
-                    },
+                      'lsp_status',
+                      icon = '', -- f013
+                      symbols = {
+                        spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+                        done = '✓',
+                        separator = ' ',
+                      },
+                      ignore_lsp = {},
+                      show_name = true,
+                    }
+                },
+                lualine_z = {
                     {
                         'location',
-                        icon = '󰁔',
                         padding = { left = 0, right = 1 },
                         color = { fg = colors.fg },
                     },
                     {
                         'progress',
-                        icon = '󰦨',
                         padding = { left = 1, right = 0 },
                         color = { fg = colors.fg },
-                    },
-                },
-                lualine_z = {
-                    {
-                        'datetime',
-                        style = '%H:%M',
-                        icon = '󰥔',
-                        color = { fg = colors.fg },
-                        cond = function()
-                            return vim.fn.strftime('%H') ~= '00' or vim.fn.strftime('%M') ~= '00'
-                        end,
                     },
                 },
             },
@@ -206,28 +177,19 @@ return {
                     { 'branch', icon = '󰘬' },
                     { 'pretty_path' },
                 },
-                lualine_c = {
-                    {
-                        'filename',
-                        symbols = {
-                            modified = ' ●',
-                            readonly = ' 󰈡',
-                            unnamed = ' [No Name]',
-                        },
-                    },
-                },
+                lualine_c = {},
                 lualine_x = {
-                    {
-                        function()
-                            return vim.bo.filetype ~= '' and vim.bo.filetype or 'no ft'
-                        end,
-                    },
+                    { 'encoding' },
+                },
+                lualine_y = {},
+                lualine_z = {
                     {
                         'location',
                     },
+                    {
+                        'progress',
+                    }
                 },
-                lualine_y = {},
-                lualine_z = {},
             },
             tabline = {},
             winbar = {},
