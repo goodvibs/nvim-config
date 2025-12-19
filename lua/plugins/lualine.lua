@@ -3,6 +3,7 @@ return {
     dependencies = {
         "echasnovski/mini.icons",
         "bwpge/lualine-pretty-path",
+        "nvim-tree/nvim-web-devicons"
     },
     config = function()
         local lualine = require("lualine")
