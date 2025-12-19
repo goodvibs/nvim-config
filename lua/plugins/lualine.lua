@@ -70,7 +70,7 @@ return {
             options = {
                 theme = theme,
                 component_separators = { left = '', right = '' },
-                section_separators = { left = '', right = '' },
+                section_separators = { left = '', right = '｜' },
                 disabled_filetypes = {
                     statusline = { 'alpha', 'dashboard' },
                     winbar = {},
@@ -110,14 +110,20 @@ return {
                 },
                 lualine_x = {
                     {
-                        function()
-                            return vim.bo.filetype ~= '' and vim.bo.filetype or 'no ft'
-                        end,
-                        color = { fg = colors.fg },
-                    },
+                      'lsp_status',
+                      icon = '', -- f013
+                      symbols = {
+                        spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+                        done = '✓',
+                        separator = ' ',
+                      },
+                      ignore_lsp = {},
+                      show_name = true,
+                    }
+                },
+                lualine_y = {
                     {
                         'encoding',
-                        show_bomb = false,
                     },
                     {
                         lazy_status.updates,
@@ -145,19 +151,6 @@ return {
                         end,
                     },
                 },
-                lualine_y = {
-                    {
-                      'lsp_status',
-                      icon = '', -- f013
-                      symbols = {
-                        spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
-                        done = '✓',
-                        separator = ' ',
-                      },
-                      ignore_lsp = {},
-                      show_name = true,
-                    }
-                },
                 lualine_z = {
                     {
                         'location',
@@ -178,10 +171,10 @@ return {
                     { 'pretty_path' },
                 },
                 lualine_c = {},
-                lualine_x = {
+                lualine_x = {},
+                lualine_y = {
                     { 'encoding' },
                 },
-                lualine_y = {},
                 lualine_z = {
                     {
                         'location',
