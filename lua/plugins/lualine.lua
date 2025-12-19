@@ -99,7 +99,7 @@ return {
             table.insert(config.sections.lualine_x, component)
         end
 
-        -- left bookend
+
         ins_left {
             function() return '▊' end,
             color = function()
@@ -108,7 +108,7 @@ return {
             padding = { left = 0, right = 1 },
         }
 
-        -- mode icon
+
         ins_left {
             function() return '' end,
             color = function()
@@ -117,7 +117,7 @@ return {
             padding = { right = 1 },
         }
 
-        -- mode name
+
         ins_left {
             function()
                 local mode_map = {
@@ -145,9 +145,22 @@ return {
             color = { fg = colors.violet, gui = 'bold' },
         }
 
+
         ins_left {
             'pretty_path',
             cond = conditions.buffer_not_empty,
+            color = { fg = colors.magenta, gui = 'bold' },
+        }
+
+
+        ins_left {
+            function()
+                local cwd = vim.loop and vim.loop.cwd() or vim.fn.getcwd()
+
+                return vim.fn.fnamemodify(cwd, ':~')
+            end,
+
+            cond = function() return vim.fn.empty(vim.fn.expand('%:t')) == 1 end,
             color = { fg = colors.magenta, gui = 'bold' },
         }
 
@@ -162,12 +175,12 @@ return {
             },
         }
 
-        -- middle separator
+
         ins_left {
             function() return '%=' end,
         }
 
-        -- LSP name
+
         ins_left {
             function()
                 local msg = 'No Active Lsp'
@@ -188,7 +201,7 @@ return {
             color = { fg = '#ffffff', gui = 'bold' },
         }
 
-        -- right side
+
         ins_right {
             'o:encoding',
             fmt = string.upper,
@@ -214,7 +227,7 @@ return {
             cond = conditions.hide_in_width,
         }
 
-        -- moved here: filesize (just left of location/progress)
+
         ins_right {
             'filesize',
             cond = conditions.buffer_not_empty,
@@ -232,7 +245,7 @@ return {
             color = { fg = colors.fg, gui = 'bold' },
         }
 
-        -- right bookend
+
         ins_right {
             function() return '▊' end,
             color = function()
