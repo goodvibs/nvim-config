@@ -79,7 +79,6 @@ return {
                     enable = true,
                     lookahead = true,
                     keymaps = {
-
                         ["af"] = "@function.outer",
                         ["if"] = "@function.inner",
                         ["ac"] = "@class.outer",
@@ -88,16 +87,23 @@ return {
                         ["ia"] = "@parameter.inner",
                         ["ab"] = "@block.outer",
                         ["ib"] = "@block.inner",
+
+
+                        ["a/"] = "@comment.outer",
+                        ["i/"] = "@comment.outer",
                     },
                 },
                 move = {
                     enable = true,
-
+                    set_jumps = true,
                     goto_next_start = {
                         ["]f"] = "@function.outer",
                         ["]c"] = "@class.outer",
                         ["]a"] = "@parameter.outer",
                         ["]b"] = "@block.outer",
+
+
+                        ["]/"] = "@comment.outer",
                     },
                     goto_next_end = {
                         ["]F"] = "@function.outer",
@@ -110,6 +116,9 @@ return {
                         ["[c"] = "@class.outer",
                         ["[a"] = "@parameter.outer",
                         ["[b"] = "@block.outer",
+
+
+                        ["[/"] = "@comment.outer",
                     },
                     goto_previous_end = {
                         ["[F"] = "@function.outer",
