@@ -116,8 +116,7 @@ return {
                         color = { fg = colors.fg },
                     },
                     {
-                      'encoding',
-                      -- Show '[BOM]' when the file has a byte-order mark
+                        'encoding',
                         show_bomb = false,
                     },
                     {
