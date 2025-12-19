@@ -1,193 +1,246 @@
 return {
-    "nvim-lualine/lualine.nvim",
-    dependencies = {
-        "echasnovski/mini.icons",
-        "bwpge/lualine-pretty-path",
-        "nvim-tree/nvim-web-devicons"
-    },
-    config = function()
-        local lualine = require("lualine")
-        local lazy_status = require("lazy.status") -- to configure lazy pending updates count
+  'nvim-lualine/lualine.nvim',
+  dependencies = {
+    'echasnovski/mini.icons',
+    'nvim-tree/nvim-web-devicons',
+    'bwpge/lualine-pretty-path',
+  },
+  config = function()
+    local lualine = require('lualine')
 
-        local colors = {
-            blue = "#65D1FF",
-            green = "#3EFFDC",
-            violet = "#FF61EF",
-            yellow = "#FFDA7B",
-            red = "#FF4A4A",
-            fg = "#c3ccdc",
-            bg = "#112638",
-            inactive_bg = "#2c3043",
+    local colors = {
+      bg       = '#202328',
+      fg       = '#bbc2cf',
+      yellow   = '#ECBE7B',
+      cyan     = '#008080',
+      darkblue = '#081633',
+      green    = '#98be65',
+      orange   = '#FF8800',
+      violet   = '#a9a1e1',
+      magenta  = '#c678dd',
+      blue     = '#51afef',
+      red      = '#ec5f67',
+    }
+
+    local function mode_color()
+      local mode_colors = {
+        n = colors.red,
+        i = colors.green,
+        v = colors.blue,
+        [''] = colors.blue,
+        V = colors.blue,
+        c = colors.magenta,
+        no = colors.red,
+        s = colors.orange,
+        S = colors.orange,
+        [''] = colors.orange,
+        ic = colors.yellow,
+        R = colors.violet,
+        Rv = colors.violet,
+        cv = colors.red,
+        ce = colors.red,
+        r = colors.cyan,
+        rm = colors.cyan,
+        ['r?'] = colors.cyan,
+        ['!'] = colors.red,
+        t = colors.red,
+      }
+
+      return mode_colors[vim.fn.mode()] or colors.fg
+    end
+
+    local conditions = {
+      buffer_not_empty = function()
+        return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
+      end,
+      hide_in_width = function()
+        return vim.fn.winwidth(0) > 80
+      end,
+      check_git_workspace = function()
+        local filepath = vim.fn.expand('%:p:h')
+        local gitdir = vim.fn.finddir('.git', filepath .. ';')
+        return gitdir and #gitdir > 0 and #gitdir < #filepath
+      end,
+    }
+
+    local config = {
+      options = {
+        component_separators = '',
+        section_separators = '',
+        icons_enabled = true,
+        theme = {
+          normal = { c = { fg = colors.fg, bg = colors.bg } },
+          inactive = { c = { fg = colors.fg, bg = colors.bg } },
+        },
+      },
+      sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_y = {},
+        lualine_z = {},
+
+        lualine_c = {},
+        lualine_x = {},
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_y = {},
+        lualine_z = {},
+        lualine_c = {},
+        lualine_x = {},
+      },
+    }
+
+    local function ins_left(component)
+      table.insert(config.sections.lualine_c, component)
+    end
+    local function ins_right(component)
+      table.insert(config.sections.lualine_x, component)
+    end
+
+
+    ins_left {
+      function() return '▊' end,
+      color = function()
+        return { fg = mode_color() }
+      end,
+      padding = { left = 0, right = 1 },
+    }
+
+
+    ins_left {
+      function() return '' end,
+      color = function()
+        return { fg = mode_color() }
+      end,
+      padding = { right = 1 },
+    }
+
+
+    ins_left {
+      function()
+        local mode_map = {
+          n  = 'NORMAL',
+          i  = 'INSERT',
+          v  = 'VISUAL',
+          V  = 'V-LINE',
+          [''] = 'V-BLOCK',
+          c  = 'COMMAND',
+          R  = 'REPLACE',
+          r  = 'PROMPT',
+          t  = 'TERMINAL',
         }
+        return mode_map[vim.fn.mode()] or vim.fn.mode()
+      end,
+      color = function()
+        return { fg = mode_color(), gui = 'bold' }
+      end,
+      padding = { right = 1 },
+    }
 
-        local theme = {
-            normal = {
-                a = { bg = colors.blue, fg = colors.bg, gui = "bold" },
-                b = { bg = colors.bg, fg = colors.fg },
-                c = { bg = colors.bg, fg = colors.fg },
-                z = { bg = colors.bg, fg = colors.fg }
-            },
-            insert = {
-                a = { bg = colors.green, fg = colors.bg, gui = "bold" },
-                b = { bg = colors.bg, fg = colors.fg },
-                c = { bg = colors.bg, fg = colors.fg },
-                z = { bg = colors.bg, fg = colors.fg }
-            },
-            visual = {
-                a = { bg = colors.violet, fg = colors.bg, gui = "bold" },
-                b = { bg = colors.bg, fg = colors.fg },
-                c = { bg = colors.bg, fg = colors.fg },
-                z = { bg = colors.bg, fg = colors.fg }
-            },
-            command = {
-                a = { bg = colors.yellow, fg = colors.bg, gui = "bold" },
-                b = { bg = colors.bg, fg = colors.fg },
-                c = { bg = colors.bg, fg = colors.fg },
-                z = { bg = colors.bg, fg = colors.fg }
-            },
-            replace = {
-                a = { bg = colors.red, fg = colors.bg, gui = "bold" },
-                b = { bg = colors.bg, fg = colors.fg },
-                c = { bg = colors.bg, fg = colors.fg },
-                z = { bg = colors.bg, fg = colors.fg }
-            },
-            inactive = {
-                a = { bg = colors.inactive_bg, fg = colors.fg, gui = "bold" },
-                b = { bg = colors.inactive_bg, fg = colors.fg },
-                c = { bg = colors.inactive_bg, fg = colors.fg },
-            },
-        }
+    ins_left {
+      'filesize',
+      cond = conditions.buffer_not_empty,
+    }
 
-        -- Helper function to get diagnostics count
-        local function diagnostics_count(severity)
-            local count = vim.diagnostic.count(0, { severity = severity })
-            return count > 0 and tostring(count) or ""
+    ins_left {
+      'branch',
+      icon = '',
+      color = { fg = colors.violet, gui = 'bold' },
+    }
+
+    ins_left {
+      'pretty_path',
+      cond = conditions.buffer_not_empty,
+      color = { fg = colors.magenta, gui = 'bold' },
+    }
+
+
+    ins_left {
+      'diagnostics',
+      sources = { 'nvim_diagnostic' },
+      symbols = { error = ' ', warn = ' ', info = ' ' },
+      diagnostics_color = {
+        error = { fg = colors.red },
+        warn = { fg = colors.yellow },
+        info = { fg = colors.cyan },
+      },
+    }
+
+
+    ins_left {
+      function() return '%=' end,
+    }
+
+
+    ins_left {
+      function()
+        local msg = 'No Active Lsp'
+        local buf_ft = vim.api.nvim_get_option_value('filetype', { buf = 0 })
+        local clients = vim.lsp.get_clients()
+        if next(clients) == nil then
+          return msg
         end
+        for _, client in ipairs(clients) do
+          local filetypes = client.config.filetypes
+          if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+            return client.name
+          end
+        end
+        return msg
+      end,
+      icon = ' LSP:',
+      color = { fg = '#ffffff', gui = 'bold' },
+    }
 
 
-        -- configure lualine with modified theme
-        lualine.setup({
-            options = {
-                theme = theme,
-                component_separators = { left = '', right = '' },
-                section_separators = { left = '', right = '｜' },
-                disabled_filetypes = {
-                    statusline = { 'alpha', 'dashboard' },
-                    winbar = {},
-                },
-                always_divide_middle = true,
-                globalstatus = false,
-                refresh = {
-                    statusline = 100,
-                    tabline = 1000,
-                    winbar = 1000,
-                },
-                icons_enabled = true,
-            },
-            sections = {
-                lualine_a = { 'mode' },
-                lualine_b = {
-                    { 'branch', icon = '󰘬', color = { fg = colors.violet } },
-                    {
-                        'pretty_path',
-                        color = { fg = colors.fg },
-                    },
-                },
-                lualine_c = {
-                    {
-                        'diagnostics',
-                        sources = { 'nvim_diagnostic' },
-                        symbols = {
-                            error = '󰅚 ',
-                            warn = '󰀪 ',
-                            info = '󰋽 ',
-                            hint = '󰌵 ',
-                        },
-                        colored = true,
-                        update_in_insert = false,
-                        always_visible = false,
-                    },
-                },
-                lualine_x = {
-                    {
-                      'lsp_status',
-                      icon = '', -- f013
-                      symbols = {
-                        spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
-                        done = '✓',
-                        separator = ' ',
-                      },
-                      ignore_lsp = {},
-                      show_name = true,
-                    }
-                },
-                lualine_y = {
-                    {
-                        'encoding',
-                    },
-                    {
-                        lazy_status.updates,
-                        cond = lazy_status.has_updates,
-                        color = { fg = "#ff9e64" },
-                    },
-                    {
-                        function()
-                            return ('%s %d events'):format(Snacks.profiler.config.icons.status,
-                                #Snacks.profiler.core.events)
-                        end,
-                        color = 'DiagnosticError',
-                        cond = function()
-                            return Snacks.profiler.core.running
-                        end,
-                    },
-                    {
-                        function()
-                            local reg = vim.fn.reg_recording()
-                            return '󰑊 ' .. reg
-                        end,
-                        color = { fg = colors.violet },
-                        cond = function()
-                            return vim.fn.reg_recording() ~= ''
-                        end,
-                    },
-                },
-                lualine_z = {
-                    {
-                        'location',
-                        padding = { left = 0, right = 1 },
-                        color = { fg = colors.fg },
-                    },
-                    {
-                        'progress',
-                        padding = { left = 1, right = 0 },
-                        color = { fg = colors.fg },
-                    },
-                },
-            },
-            inactive_sections = {
-                lualine_a = {},
-                lualine_b = {
-                    { 'branch', icon = '󰘬' },
-                    { 'pretty_path' },
-                },
-                lualine_c = {},
-                lualine_x = {},
-                lualine_y = {
-                    { 'encoding' },
-                },
-                lualine_z = {
-                    {
-                        'location',
-                    },
-                    {
-                        'progress',
-                    }
-                },
-            },
-            tabline = {},
-            winbar = {},
-            inactive_winbar = {},
-            extensions = {},
-        })
-    end,
+    ins_right {
+      'o:encoding',
+      fmt = string.upper,
+      cond = conditions.hide_in_width,
+      color = { fg = colors.green, gui = 'bold' },
+    }
+
+    ins_right {
+      'fileformat',
+      fmt = string.upper,
+      icons_enabled = false,
+      color = { fg = colors.green, gui = 'bold' },
+    }
+
+    ins_right {
+      'diff',
+      symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
+      diff_color = {
+        added = { fg = colors.green },
+        modified = { fg = colors.orange },
+        removed = { fg = colors.red },
+      },
+      cond = conditions.hide_in_width,
+    }
+
+    ins_right {
+      'location',
+      padding = { left = 1, right = 0 },
+      color = { fg = colors.fg },
+    }
+
+    ins_right {
+      'progress',
+      padding = { left = 1, right = 0 },
+      color = { fg = colors.fg, gui = 'bold' },
+    }
+
+
+    ins_right {
+      function() return '▊' end,
+      color = function()
+        return { fg = mode_color() }
+      end,
+      padding = { left = 1 },
+    }
+
+    lualine.setup(config)
+  end,
 }
