@@ -51,31 +51,10 @@ return {
         end
 
 
-        local function lua_ls_handler()
-            vim.lsp.config("lua_ls", {
-                capabilities = capabilities,
-                on_attach = on_attach,
-                settings = {
-                    Lua = {
-                        runtime = { version = "LuaJIT" },
-                        diagnostics = { globals = { "vim" } },
-                        workspace = {
-                            checkThirdParty = false,
-                        },
-                    },
-                },
-            })
-            vim.lsp.enable("lua_ls")
-        end
-
-
         mason_lspconfig.setup({
             handlers = {
-                lua_ls = lua_ls_handler,
                 default_handler,
             },
         })
-
-        lua_ls_handler()
     end,
 }
