@@ -4,6 +4,7 @@ return {
     dependencies = {
         "mason-org/mason.nvim",
         "mason-org/mason-lspconfig.nvim",
+        "folke/lazydev.nvim",
     },
     config = function()
         local keymap = vim.keymap
@@ -22,7 +23,7 @@ return {
             underline = true,
             update_in_insert = false,
             severity_sort = true,
-            float = { border = "rounded", source = "always", header = "", prefix = "" },
+            float = { border = "rounded", source = true, header = "", prefix = "" },
         })
 
 
@@ -30,14 +31,12 @@ return {
 
 
         local on_attach = function(client, bufnr)
-            vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+            vim.api.nvim_buf_set_option_value(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
             local opts = { buffer = bufnr, remap = false }
 
-            keymap.set("n", "<leader>ld", vim.diagnostic.open_float, vim.tbl_extend("force", opts, { desc = "Show diagnostics" }))
-            keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, vim.tbl_extend("force", opts, { desc = "Diagnostics list" }))
-
             if client.server_capabilities.documentFormattingProvider then
-                keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ bufnr = bufnr }) end, vim.tbl_extend("force", opts, { desc = "Format document" }))
+                keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ bufnr = bufnr }) end,
+                    vim.tbl_extend("force", opts, { desc = "Format document" }))
             end
         end
 
@@ -60,7 +59,9 @@ return {
                     Lua = {
                         runtime = { version = "LuaJIT" },
                         diagnostics = { globals = { "vim" } },
-                        workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+                        workspace = {
+                            checkThirdParty = false,
+                        },
                     },
                 },
             })
@@ -70,9 +71,11 @@ return {
 
         mason_lspconfig.setup({
             handlers = {
+                lua_ls = lua_ls_handler,
                 default_handler,
-                ["lua_ls"] = lua_ls_handler,
             },
         })
+
+        lua_ls_handler()
     end,
 }
