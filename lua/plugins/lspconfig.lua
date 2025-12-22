@@ -21,8 +21,5 @@ return {
             severity_sort = true,
             float = { border = "rounded", source = true, header = "", prefix = "" },
         })
-
-        require("mason").setup()
-        require("mason-lspconfig").setup()
     end,
 }
