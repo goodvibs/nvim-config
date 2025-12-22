@@ -50,7 +50,7 @@ return {
         vim.keymap.set("n", "<leader>fo", builtin.buffers, { desc = "Search open buffers" })
         vim.keymap.set("n", "<leader>f?", builtin.help_tags, { desc = "Search help tags" })
         vim.keymap.set("n", "<leader>fz", builtin.oldfiles, { desc = "Search old files" })
-        vim.keymap.set("n", "<leader>fh", builtin.search_history, { desc = "Search search history" })
+        vim.keymap.set("n", "<leader>f/", builtin.search_history, { desc = "Search search history" })
         vim.keymap.set("n", "<leader>fcc", builtin.commands, { desc = "Search available commands" })
         vim.keymap.set("n", "<leader>fch", builtin.command_history, { desc = "Search command history" })
         vim.keymap.set("n", "<leader>ft", builtin.treesitter, { desc = "Search treesitter AST" })
