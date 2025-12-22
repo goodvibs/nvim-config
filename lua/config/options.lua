@@ -30,6 +30,7 @@ vim.opt.ruler = false
 vim.opt.scrolloff = 6
 vim.opt.shiftwidth = 4
 vim.opt.showcmd = true
+vim.opt.showcmdloc = 'statusline'
 vim.opt.showmode = false
 vim.opt.sidescrolloff = 6
 vim.opt.signcolumn = "yes"
