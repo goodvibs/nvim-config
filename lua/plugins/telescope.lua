@@ -51,11 +51,13 @@ return {
         vim.keymap.set("n", "<leader>f?", builtin.help_tags, { desc = "Search help tags" })
         vim.keymap.set("n", "<leader>fz", builtin.oldfiles, { desc = "Search old files" })
         vim.keymap.set("n", "<leader>fh", builtin.search_history, { desc = "Search search history" })
-        vim.keymap.set("n", "<leader>fc", builtin.command_history, { desc = "Search command history" })
-        vim.keymap.set("n", "<leader>fq", builtin.quickfix, { desc = "Search quickfix list" })
+        vim.keymap.set("n", "<leader>fcc", builtin.commands, { desc = "Search available commands" })
+        vim.keymap.set("n", "<leader>fch", builtin.command_history, { desc = "Search command history" })
         vim.keymap.set("n", "<leader>ft", builtin.treesitter, { desc = "Search treesitter AST" })
-        vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume the previous search" })
+        vim.keymap.set("n", "<leader>fq", builtin.quickfix, { desc = "Search quickfix list" })
         vim.keymap.set("n", "<leader>fj", builtin.jumplist, { desc = "Search jumplist" })
+        vim.keymap.set("n", "<leader>fl", builtin.loclist, { desc = "Search location list" })
         vim.keymap.set("n", "<leader>fv", builtin.vim_options, { desc = "Search vim options" })
+        vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume the previous search" })
     end,
 }
