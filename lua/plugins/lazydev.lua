@@ -18,6 +18,7 @@ return {
     opts = {
         library = {
             vim.fn.stdpath("config"),
+            vim.fn.stdpath("data") .. "/lazy/snacks.nvim",
         },
         integrations = {
             lspconfig = true,
