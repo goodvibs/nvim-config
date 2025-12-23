@@ -21,17 +21,5 @@ return {
             severity_sort = true,
             float = { border = "rounded", source = true, header = "", prefix = "" },
         })
-
-        local lspconfig = require("lspconfig")
-        lspconfig.lua_ls.setup({
-            settings = {
-                Lua = {
-                    globals = { "Snacks" },
-                    workspace = {
-                        checkThirdParty = false,
-                    },
-                },
-            },
-        })
     end,
 }
