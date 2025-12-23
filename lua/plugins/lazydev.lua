@@ -17,8 +17,7 @@ return {
     priority = 1000,
     opts = {
         library = {
-            vim.fn.stdpath("config"),
-            vim.fn.stdpath("data") .. "/lazy/snacks.nvim",
+            { path = "snacks.nvim", words = { "Snacks" } }
         },
         integrations = {
             lspconfig = true,
