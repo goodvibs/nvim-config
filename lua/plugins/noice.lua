@@ -1,6 +1,9 @@
 return {
     "folke/noice.nvim",
     event = "VeryLazy",
+    dependencies = {
+        "MunifTanjim/nui.nvim",
+    },
     opts = {
         lsp = {
             override = {
@@ -19,9 +22,7 @@ return {
             enabled = true,
             view = "cmdline_popup",
             opts = {},
-            ---@type table<string, CmdlineFormat>
             format = {
-                conceal = false,
                 cmdline = { pattern = "^:", icon = "", lang = "vim", conceal = false },
                 search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex", conceal = false },
                 search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex", conceal = false },
@@ -31,8 +32,5 @@ return {
                 input = { view = "cmdline_input", icon = "󰥻 ", conceal = false },
             },
         },
-    },
-    dependencies = {
-        "MunifTanjim/nui.nvim",
     },
 }

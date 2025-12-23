@@ -17,7 +17,8 @@ return {
     priority = 1000,
     opts = {
         library = {
-            { path = "snacks.nvim", words = { "Snacks" } }
+            { path = "snacks.nvim", words = { "Snacks" } },
+            { path = "noice.nvim",  words = { "CmdlineFormat" } }
         },
         integrations = {
             lspconfig = true,
