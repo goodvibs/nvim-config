@@ -8,6 +8,7 @@ return {
     },
     config = function()
         require("nvim-treesitter.configs").setup({
+            modules = {},
 
             ensure_installed = {
                 "bash",
