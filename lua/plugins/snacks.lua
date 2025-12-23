@@ -10,33 +10,36 @@ return {
         scope = {
             enabled = true
         },
-        lazygit = {
-            enabled = true
-        },
         image = {
-            enabled = true
-        },
-        input = {
             enabled = true
         },
         bigfile = {
             enabled = true
         },
+        gitbrowse = {
+            enabled = true
+        },
+        scratch = {
+            enabled = true
+        }
+    },
+    keys = {
+        { "<leader>gB", function() Snacks.gitbrowse() end,      desc = "Git Browse",           mode = { "n", "v" } },
+        { "<leader>.",  function() Snacks.scratch() end,        desc = "Toggle Scratch Buffer" },
+        { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
     },
     init = function()
         vim.api.nvim_create_autocmd("User", {
             pattern = "VeryLazy",
             callback = function()
-                -- Setup some globals for debugging (lazy-loaded)
                 _G.dd = function(...)
                     Snacks.debug.inspect(...)
                 end
                 _G.bt = function()
                     Snacks.debug.backtrace()
                 end
-                vim.print = _G.dd -- Override print to use snacks for `:=` command
+                vim.print = _G.dd
 
-                -- Create some toggle mappings
                 Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>ow")
                 Snacks.toggle.diagnostics():map("<leader>od")
                 Snacks.toggle.treesitter():map("<leader>oT")
