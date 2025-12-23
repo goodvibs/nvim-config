@@ -6,21 +6,19 @@ return {
             override = {
                 ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
                 ["vim.lsp.util.stylize_markdown"] = true,
-                -- Note: blink.cmp doesn't use cmp.entry.get_documentation
-                -- ["cmp.entry.get_documentation"] = true,
             },
         },
         presets = {
-            bottom_search = true,         -- use a classic bottom cmdline for search
-            command_palette = true,       -- position the cmdline and popupmenu together
-            long_message_to_split = true, -- long messages will be sent to a split
-            inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-            lsp_doc_border = true,        -- add a border to hover docs and signature help
+            bottom_search = true,
+            command_palette = true,
+            long_message_to_split = true,
+            inc_rename = false,
+            lsp_doc_border = true,
         },
         cmdline = {
-            enabled = true,         -- enables the Noice cmdline UI
-            view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
-            opts = {},              -- global options for the cmdline. See section on views
+            enabled = true,
+            view = "cmdline_popup",
+            opts = {},
             ---@type table<string, CmdlineFormat>
             format = {
                 conceal = false,
@@ -30,7 +28,7 @@ return {
                 filter = { pattern = "^:%s*!", icon = "$", lang = "bash", conceal = false },
                 lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*", }, icon = "", lang = "lua", conceal = false },
                 help = { pattern = "^:%s*he?l?p?%s+", icon = "", conceal = false },
-                input = { view = "cmdline_input", icon = "󰥻 ", conceal = false }, -- Used by input()
+                input = { view = "cmdline_input", icon = "󰥻 ", conceal = false },
             },
         },
     },
