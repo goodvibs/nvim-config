@@ -19,7 +19,9 @@ return {
         library = {
             { path = "snacks.nvim",       words = { "Snacks" } },
             { path = "noice.nvim",        words = { "CmdlineFormat" } },
-            { path = "${3rd}/luv/library" }
+            { path = "${3rd}/luv/library" },
+            { path = "blink.cmp" }
+
         },
         integrations = {
             lspconfig = true,
