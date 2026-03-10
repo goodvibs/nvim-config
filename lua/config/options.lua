@@ -1,7 +1,7 @@
 vim.opt.autoindent = true
 vim.opt.autoread = true
 vim.opt.backup = false
-vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.completeopt = { "fuzzy", "menuone", "noselect" }
 vim.opt.cursorline = true
 vim.opt.expandtab = true
 vim.opt.foldlevel = 99
@@ -24,6 +24,7 @@ vim.opt.listchars = {
     precedes = "⟨",
 }
 vim.opt.mouse = "a"
+vim.opt.mousescroll = "ver:1,hor:1"
 vim.opt.number = true
 vim.opt.winborder = "rounded"
 vim.opt.relativenumber = true

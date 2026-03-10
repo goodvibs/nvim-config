@@ -6,7 +6,7 @@ return {
         'nvim-tree/nvim-web-devicons'
     },
 
-    version = '1.*',
+    version = 'v1.8',
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
@@ -21,7 +21,6 @@ return {
             },
             menu = {
                 auto_show = true,
-                auto_show_delay_ms = 500,
             }
         },
 
